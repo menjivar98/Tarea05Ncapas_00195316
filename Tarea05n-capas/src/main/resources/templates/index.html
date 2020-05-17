@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Guardar Alumno</title>
+<link rel="stylesheet" href="src/main/resources/static/style/main.css"  th:href = "@{/style/main.css}" type="text/css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+  		<span class="navbar-brand mb-0 h1">Ingresar Alumno</span>
+	</nav>
+	
+	<form th:action="@{/formulario}" th:object="${estudiante}" method="post" class="main-form">
+		<div class="form-group">
+			<label>Nombre del estudiante:</label>
+			<input type="text" th:field="*{nombre}" id="nombre" placeholder="Ingrese nombre del estudiante" class="form-control" ><br>
+		
+		</div>
+		
+		<div class="form-group">
+			<label>Apellido del estudiante:</label>
+			<input type="text" th:field="*{apellido}" id="apellido" placeholder="Ingrese apellido del estudiante" class="form-control"><br>
+		</div>
+		
+		<div class="form-group">
+			<label>Carnet del estudiante:</label>
+			<input type="number" th:field="*{carnet}" id="carnet" placeholder="Ingrese edad del estudiante" class="form-control"><br>
+		</div>
+		
+		<div class="form-group">
+			<label>Carrera del estudiante:</label>
+			<input type="text" th:field="*{carrera}" id="carrera"  class="form-control" placeholder="Ingresar carrera de estudiante">
+		
+		</div>
+		
+		
+		<input type="submit" value="Agregar Alumno" class="btn btn-primary mb-2"/>
+		<a class="mb-0" href="/listado" type="buttom">Listado de Alumno</a>
+		
+		
+	</form>
+	
+
+
+</body>
+</html>
