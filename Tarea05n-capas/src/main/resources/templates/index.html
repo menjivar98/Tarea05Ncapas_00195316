@@ -12,37 +12,45 @@
   		<span class="navbar-brand mb-0 h1">Ingresar Alumno</span>
 	</nav>
 	
-	<form th:action="@{/formulario}" th:object="${estudiante}" method="post" class="main-form">
+	<form id="myForm"  th:action="@{/formulario}" th:object="${estudiante}" method="post" class="main-form" onSubmit="return limpiar()">
 		<div class="form-group">
 			<label>Nombre del estudiante:</label>
-			<input type="text" th:field="*{nombre}" id="nombre" placeholder="Ingrese nombre del estudiante" class="form-control" ><br>
-		
+			<input type="text" th:field="*{Nombre}" id="nombre" placeholder="Ingrese nombre del estudiante" class="form-control" ><br>
+			<small>
+				<span th:errors="*{Nombre}" class="alert alert-danger" ></span>
+			</small>
 		</div>
 		
 		<div class="form-group">
 			<label>Apellido del estudiante:</label>
-			<input type="text" th:field="*{apellido}" id="apellido" placeholder="Ingrese apellido del estudiante" class="form-control"><br>
+			<input type="text" th:field="*{Apellido}" id="apellido" placeholder="Ingrese apellido del estudiante" class="form-control"><br>
+			<small>
+				<span th:errors="*{Apellido}" class="alert alert-danger" ></span>
+			</small>
 		</div>
 		
 		<div class="form-group">
 			<label>Carnet del estudiante:</label>
-			<input type="number" th:field="*{carnet}" id="carnet" placeholder="Ingrese edad del estudiante" class="form-control"><br>
+			<input type="number" th:field="*{carnet}" id="carnet" placeholder="Ingrese el carnet del estudiante"class="form-control"><br>
+			<small>
+				<span th:errors="*{carnet}" class="alert alert-danger" ></span>
+			</small>
 		</div>
 		
 		<div class="form-group">
 			<label>Carrera del estudiante:</label>
-			<input type="text" th:field="*{carrera}" id="carrera"  class="form-control" placeholder="Ingresar carrera de estudiante">
-		
+			<input type="text" th:field="*{carrera}" id="carrera"  class="form-control" placeholder="Ingresar carrera de estudiante"><br>
+			<small>
+				<span th:errors="*{carrera}" class="alert alert-danger" ></span>
+			</small>
 		</div>
 		
-		
-		<input type="submit" value="Agregar Alumno" class="btn btn-primary mb-2"/>
+		<input type="submit" value="Agregar Alumno" class="btn btn-primary mb-2" />
+		<input type="reset" value="Borrar datos" id="reset" class="btn btn-primary mb-2">
 		<a class="mb-0" href="/listado" type="buttom">Listado de Alumno</a>
-		
 		
 	</form>
 	
-
 
 </body>
 </html>

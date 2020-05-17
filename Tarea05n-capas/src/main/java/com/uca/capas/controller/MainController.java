@@ -2,8 +2,12 @@ package com.uca.capas.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,20 +35,27 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/formulario")
-	public ModelAndView insert(Estudiante estudiante) {
+	public ModelAndView insert(@Valid @ModelAttribute Estudiante estudiante,BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("estudiante", estudiante);
 		
-		
-		try {
-			estudianteDao.insert(new Estudiante(estudiante.getNombre(),
-					estudiante.getApellido(),estudiante.getCarnet(),
-					estudiante.getCarrera()));
+		if(result.hasErrors()) {
 			mav.setViewName("index");
-		}catch(Exception e) {
-		
+			
+		}else {
+			try {
+				estudianteDao.insert(new Estudiante(estudiante.getNombre(),
+						estudiante.getApellido(),estudiante.getCarnet(),
+						estudiante.getCarrera()));
+				mav.setViewName("index");
+			}catch(Exception e) {
+				e.printStackTrace();
+			
+			}
+			
 		}
+		
 		
 		
 		return mav;
